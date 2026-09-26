@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -9,586 +10,642 @@
     <!-- Google Fonts: Premium Arcade & Street-Art Graffiti Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Exo+2:wght@700;800;900&family=Nunito:wght@700;800;900&family=Rubik+Wet+Paint&family=Permanent+Marker&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Exo+2:wght@700;800;900&family=Nunito:wght@700;800;900&family=Rubik+Wet+Paint&family=Permanent+Marker&family=Sedgwick+Ave+Display&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Three.js 3D Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Three.js 3D Library (Local offline first with CDN fallback) -->
+    <script src="three.min.js"></script>
+    <script>
+        if (typeof THREE === 'undefined') {
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+        }
+    </script>
 </head>
+
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  MOBILE-FIRST SPLASH SCREEN (VIBRANT BLUE + STREET GRAFFITI)-->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div id="splash-screen">
-    <!-- Ambient Blue Glows & Halftone Stencil Pattern -->
-    <div class="splash-bg-glow"></div>
-    <div class="splash-stencil-pattern"></div>
-    <div class="splash-vignette"></div>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  MOBILE-FIRST SPLASH SCREEN (VIBRANT BLUE + STREET GRAFFITI)-->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="splash-screen">
+        <!-- Ambient Blue Glows & Halftone Stencil Pattern -->
+        <div class="splash-bg-glow"></div>
+        <div class="splash-stencil-pattern"></div>
+        <div class="splash-vignette"></div>
 
-    <div class="splash-content">
-        <!-- Top Street Sticker Badge -->
-        <div class="splash-tag-top">
-            <span class="tag-star">&#9733;</span>
-            <span class="tag-text">STREET EDITION</span>
-            <span class="tag-star">&#9733;</span>
-        </div>
+        <div class="splash-content">
+            <!-- Top Street Sticker Badge -->
+            <div class="splash-tag-top">
+                <span class="tag-star">&#9733;</span>
+                <span class="tag-text">STREET EDITION</span>
+                <span class="tag-star">&#9733;</span>
+            </div>
 
-        <!-- Main Graffiti Logo Container -->
-        <div class="splash-logo-container">
-            <!-- Spray paint cloud burst behind logo -->
-            <div class="splash-spray-burst"></div>
+            <!-- Main Graffiti Logo Container -->
+            <div class="splash-logo-container">
+                <!-- Spray paint cloud burst behind logo -->
+                <div class="splash-spray-burst"></div>
 
-            <!-- Graffiti Typography with authentic paint drips & thick outlines -->
-            <div class="graffiti-logo">
-                <div class="graffiti-line line-1">
-                    <span class="graffiti-word word-subway" data-text="SUBWAY">SUBWAY</span>
+                <!-- Graffiti Typography with authentic paint drips & thick outlines -->
+                <div class="graffiti-logo">
+                    <div class="graffiti-line line-1">
+                        <span class="graffiti-word word-subway" data-text="SUBWAY">SUBWAY</span>
+                    </div>
+                    <div class="graffiti-line line-2">
+                        <span class="graffiti-word word-runners" data-text="RUNNERS">RUNNERS</span>
+                    </div>
+
+                    <!-- Realistic Street Paint Drips SVG -->
+                    <svg class="paint-drips-svg" viewBox="0 0 500 70" preserveAspectRatio="none">
+                        <path class="drip-path drip-1" d="M 55,0 Q 58,25 55,38 A 5,5 0 1,1 48,38 Q 45,25 48,0 Z"
+                            fill="#ffffff" />
+                        <path class="drip-path drip-2" d="M 140,0 Q 144,35 140,52 A 6,6 0 1,1 130,52 Q 126,35 130,0 Z"
+                            fill="#ffffff" />
+                        <path class="drip-path drip-3"
+                            d="M 230,0 Q 233,22 230,34 A 4.5,4.5 0 1,1 223,34 Q 220,22 223,0 Z" fill="#ffffff" />
+                        <path class="drip-path drip-4" d="M 330,0 Q 334,44 330,62 A 7,7 0 1,1 318,62 Q 314,44 318,0 Z"
+                            fill="#ffffff" />
+                        <path class="drip-path drip-5" d="M 420,0 Q 424,28 420,44 A 5,5 0 1,1 412,44 Q 408,28 412,0 Z"
+                            fill="#ffffff" />
+
+                        <!-- Dripping Droplets -->
+                        <circle class="falling-drop drop-a" cx="135" cy="62" r="4.5" fill="#ffffff" />
+                        <circle class="falling-drop drop-b" cx="324" cy="72" r="5" fill="#ffffff" />
+                        <circle class="falling-drop drop-c" cx="51" cy="46" r="3.5" fill="#ffffff" />
+                    </svg>
+
+                    <!-- Spray Paint Splatters -->
+                    <div class="spray-splatter splat-1"></div>
+                    <div class="spray-splatter splat-2"></div>
+                    <div class="spray-splatter splat-3"></div>
+                    <div class="spray-splatter splat-4"></div>
                 </div>
-                <div class="graffiti-line line-2">
-                    <span class="graffiti-word word-runners" data-text="RUNNERS">RUNNERS</span>
-                </div>
 
-                <!-- Realistic Street Paint Drips SVG -->
-                <svg class="paint-drips-svg" viewBox="0 0 500 70" preserveAspectRatio="none">
-                    <path class="drip-path drip-1" d="M 55,0 Q 58,25 55,38 A 5,5 0 1,1 48,38 Q 45,25 48,0 Z" fill="#ffffff" />
-                    <path class="drip-path drip-2" d="M 140,0 Q 144,35 140,52 A 6,6 0 1,1 130,52 Q 126,35 130,0 Z" fill="#ffffff" />
-                    <path class="drip-path drip-3" d="M 230,0 Q 233,22 230,34 A 4.5,4.5 0 1,1 223,34 Q 220,22 223,0 Z" fill="#ffffff" />
-                    <path class="drip-path drip-4" d="M 330,0 Q 334,44 330,62 A 7,7 0 1,1 318,62 Q 314,44 318,0 Z" fill="#ffffff" />
-                    <path class="drip-path drip-5" d="M 420,0 Q 424,28 420,44 A 5,5 0 1,1 412,44 Q 408,28 412,0 Z" fill="#ffffff" />
-
-                    <!-- Dripping Droplets -->
-                    <circle class="falling-drop drop-a" cx="135" cy="62" r="4.5" fill="#ffffff" />
-                    <circle class="falling-drop drop-b" cx="324" cy="72" r="5" fill="#ffffff" />
-                    <circle class="falling-drop drop-c" cx="51" cy="46" r="3.5" fill="#ffffff" />
-                </svg>
-
-                <!-- Spray Paint Splatters -->
-                <div class="spray-splatter splat-1"></div>
-                <div class="spray-splatter splat-2"></div>
-                <div class="spray-splatter splat-3"></div>
-                <div class="spray-splatter splat-4"></div>
-            </div>
-
-            <!-- Glowing Subtitle Badge -->
-            <div class="splash-sub-badge">
-                <span class="bolt">&#9889;</span>
-                <span>URBAN DASH 3D</span>
-                <span class="bolt">&#9889;</span>
-            </div>
-        </div>
-
-        <!-- Bottom Status & Hint -->
-        <div class="splash-footer">
-            <div class="splash-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-            <div class="splash-skip-hint">TAP ANYWHERE TO START</div>
-        </div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  INTERNATIONAL-GRADE MOBILE LOADING SCREEN                -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div id="loading-screen">
-    <!-- Vibrant City Illustration Background -->
-    <div class="loading-artwork-bg"></div>
-    <div class="loading-overlay-gradient"></div>
-    <div class="loading-particles" id="loading-particles"></div>
-
-    <!-- Header / Street Graffiti Logo at Top Center -->
-    <header class="loading-header">
-        <div class="loading-logo-box">
-            <div class="loading-graffiti-logo">
-                <span class="load-word load-word-subway" data-text="SUBWAY">SUBWAY</span>
-                <span class="load-word load-word-runners" data-text="RUNNERS">RUNNERS</span>
-                <!-- Authentic Paint Drips SVG -->
-                <svg class="load-paint-drips" viewBox="0 0 320 38" preserveAspectRatio="none">
-                    <path d="M 35,0 Q 37,16 35,26 A 4,4 0 1,1 29,26 Q 27,16 29,0 Z" fill="#ffffff" />
-                    <path d="M 108,0 Q 111,22 108,34 A 5,5 0 1,1 100,34 Q 97,22 100,0 Z" fill="#ffffff" />
-                    <path d="M 210,0 Q 212,15 210,24 A 4,4 0 1,1 204,24 Q 202,15 204,0 Z" fill="#ffffff" />
-                    <path d="M 275,0 Q 278,20 275,32 A 4.5,4.5 0 1,1 268,32 Q 265,20 268,0 Z" fill="#ffffff" />
-                    <circle cx="104" cy="38" r="3" fill="#ffffff" />
-                    <circle cx="271" cy="36" r="2.8" fill="#ffffff" />
-                </svg>
-            </div>
-            <div class="loading-badge">&#9889; TURBO EDITION &#9889;</div>
-        </div>
-    </header>
-
-    <!-- Bottom Center: Loading Bar Container & Pro Tip -->
-    <div class="loading-bottom-container">
-        <!-- Dynamic Status Message -->
-        <div class="loading-status-wrap">
-            <span class="loading-spinner-dot"></span>
-            <span id="loading-status-text">INITIALIZING ENGINE...</span>
-        </div>
-
-        <!-- Sleek Rounded Dark-Translucent Pill Container -->
-        <div class="loading-pill-card">
-            <!-- Rounded Progress Track -->
-            <div class="loading-pill-track">
-                <div id="loading-bar-fill" class="loading-pill-fill">
-                    <div class="loading-fill-shine"></div>
+                <!-- Glowing Subtitle Badge -->
+                <div class="splash-sub-badge">
+                    <span class="bolt">&#9889;</span>
+                    <span>URBAN DASH 3D</span>
+                    <span class="bolt">&#9889;</span>
                 </div>
             </div>
-            <!-- Crisp White Percentage Text -->
-            <div class="loading-percent-box">
-                <span id="loading-percent-text">0%</span>
-            </div>
-        </div>
 
-        <!-- Pro Tip Pill -->
-        <div class="loading-tip-box">
-            <b>&#128161; PRO TIP:</b> Swipe DOWN to slide under barriers &bull; UP to jump over trains!
+            <!-- Bottom Status & Hint -->
+            <div class="splash-footer">
+                <div class="splash-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <div class="splash-skip-hint">TAP ANYWHERE TO START</div>
+            </div>
         </div>
     </div>
 
-    <!-- Bottom-Left Subtle Version / Build Number -->
-    <div class="loading-version-tag">v3.68.6-95207</div>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  INTERNATIONAL-GRADE MOBILE LOADING SCREEN                -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="loading-screen">
+        <!-- Vibrant City Illustration Background -->
+        <div class="loading-artwork-bg"></div>
+        <div class="loading-overlay-gradient"></div>
+        <div class="loading-particles" id="loading-particles"></div>
 
-    <!-- Bottom-Right Studio Signature -->
-    <div class="loading-build-signature">TURBO ENGINE 3D</div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  3D CANVAS                                                -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<canvas id="game-canvas"></canvas>
-
-<!-- Speed Lines Overlay Canvas -->
-<canvas id="speed-lines-canvas"></canvas>
-
-<!-- Camera Shake Overlay -->
-<div id="shake-overlay"></div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  AGE CONFIRMATION STEP MODAL                              -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div id="age-gate-modal" class="age-modal-overlay">
-    <div class="age-modal-card">
-        <div class="age-badge">&#127881; WELCOME RUNNER</div>
-        <h2 class="age-title">HOW OLD ARE YOU?</h2>
-        <p class="age-sub">Please confirm your age to personalize your Subway Runners experience.</p>
-        
-        <div class="age-selector-wrap">
-            <button id="btn-age-minus" class="age-step-btn" type="button" aria-label="Decrease Age">&minus;</button>
-            <div class="age-display-box">
-                <span id="age-number-display">16</span>
-                <span class="age-unit">YRS</span>
+        <!-- Header / Street Graffiti Logo at Top Center -->
+        <header class="loading-header">
+            <div class="loading-logo-box">
+                <div class="loading-graffiti-logo">
+                    <span class="load-word load-word-subway" data-text="SUBWAY">SUBWAY</span>
+                    <span class="load-word load-word-runners" data-text="RUNNERS">RUNNERS</span>
+                    <!-- Authentic Paint Drips SVG -->
+                    <svg class="load-paint-drips" viewBox="0 0 320 38" preserveAspectRatio="none">
+                        <path d="M 35,0 Q 37,16 35,26 A 4,4 0 1,1 29,26 Q 27,16 29,0 Z" fill="#ffffff" />
+                        <path d="M 108,0 Q 111,22 108,34 A 5,5 0 1,1 100,34 Q 97,22 100,0 Z" fill="#ffffff" />
+                        <path d="M 210,0 Q 212,15 210,24 A 4,4 0 1,1 204,24 Q 202,15 204,0 Z" fill="#ffffff" />
+                        <path d="M 275,0 Q 278,20 275,32 A 4.5,4.5 0 1,1 268,32 Q 265,20 268,0 Z" fill="#ffffff" />
+                        <circle cx="104" cy="38" r="3" fill="#ffffff" />
+                        <circle cx="271" cy="36" r="2.8" fill="#ffffff" />
+                    </svg>
+                </div>
+                <div class="loading-badge">&#9889; TURBO EDITION &#9889;</div>
             </div>
-            <button id="btn-age-plus" class="age-step-btn" type="button" aria-label="Increase Age">&plus;</button>
+        </header>
+
+        <!-- Bottom Center: Loading Bar Container & Pro Tip -->
+        <div class="loading-bottom-container">
+            <!-- Dynamic Status Message -->
+            <div class="loading-status-wrap">
+                <span class="loading-spinner-dot"></span>
+                <span id="loading-status-text">INITIALIZING ENGINE...</span>
+            </div>
+
+            <!-- Sleek Rounded Dark-Translucent Pill Container -->
+            <div class="loading-pill-card">
+                <!-- Rounded Progress Track -->
+                <div class="loading-pill-track">
+                    <div id="loading-bar-fill" class="loading-pill-fill">
+                        <div class="loading-fill-shine"></div>
+                    </div>
+                </div>
+                <!-- Crisp White Percentage Text -->
+                <div class="loading-percent-box">
+                    <span id="loading-percent-text">0%</span>
+                </div>
+            </div>
+
+            <!-- Pro Tip Pill -->
+            <div class="loading-tip-box">
+                <b>&#128161; PRO TIP:</b> Swipe DOWN to slide under barriers &bull; UP to jump over trains!
+            </div>
         </div>
 
-        <input type="range" id="age-slider" min="6" max="99" value="16" class="age-range-input">
+        <!-- Bottom-Left Subtle Version / Build Number -->
+        <div class="loading-version-tag">v3.68.6-95207</div>
 
-        <div class="age-terms-note">
-            By proceeding, you agree to our Terms of Service &amp; Fair Play Rules.
+        <!-- Bottom-Right Studio Signature -->
+        <div class="loading-build-signature">TURBO ENGINE 3D</div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  3D CANVAS                                                -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- Speed Lines Overlay Canvas -->
+    <canvas id="speed-lines-canvas"></canvas>
+
+    <!-- Camera Shake Overlay -->
+    <div id="shake-overlay"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  AGE CONFIRMATION STEP MODAL                              -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="age-gate-modal" class="age-modal-overlay">
+        <div class="age-modal-card">
+            <div class="age-badge">&#127881; WELCOME RUNNER</div>
+            <h2 class="age-title">HOW OLD ARE YOU?</h2>
+            <p class="age-sub">Please confirm your age to personalize your Subway Runners experience.</p>
+
+            <div class="age-selector-wrap">
+                <button id="btn-age-minus" class="age-step-btn" type="button" aria-label="Decrease Age">&minus;</button>
+                <div class="age-display-box">
+                    <span id="age-number-display">16</span>
+                    <span class="age-unit">YRS</span>
+                </div>
+                <button id="btn-age-plus" class="age-step-btn" type="button" aria-label="Increase Age">&plus;</button>
+            </div>
+
+            <input type="range" id="age-slider" min="6" max="99" value="16" class="age-range-input">
+
+            <div class="age-terms-note">
+                By proceeding, you agree to our Terms of Service &amp; Fair Play Rules.
+            </div>
+
+            <button id="btn-age-confirm" class="ss-btn green full-w" type="button">
+                <span>&#9654; CONFIRM &amp; RUN</span>
+            </button>
         </div>
+    </div>
 
-        <button id="btn-age-confirm" class="ss-btn green full-w" type="button">
-            <span>&#9654; CONFIRM &amp; RUN</span>
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  CINEMATIC INTRO OVERLAY (5-8S CHASE SEQUENCE)            -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="cinematic-overlay">
+        <div class="cinema-bar cinema-bar-top"></div>
+        <div class="cinema-bar cinema-bar-bottom"></div>
+
+        <button id="btn-skip-intro" class="cinema-skip-btn" type="button">
+            <span>SKIP INTRO</span>
+            <span class="skip-icon">&#9197;</span>
         </button>
-    </div>
-</div>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  CINEMATIC INTRO OVERLAY (5-8S CHASE SEQUENCE)            -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div id="cinematic-overlay">
-    <div class="cinema-bar cinema-bar-top"></div>
-    <div class="cinema-bar cinema-bar-bottom"></div>
-
-    <button id="btn-skip-intro" class="cinema-skip-btn" type="button">
-        <span>SKIP INTRO</span>
-        <span class="skip-icon">&#9197;</span>
-    </button>
-
-    <!-- Comic Action Callout Bubble -->
-    <div id="cinematic-callout" class="cinema-callout-box">
-        <div class="callout-badge" id="callout-speaker">&#128110; INSPECTOR</div>
-        <div class="callout-text" id="callout-text">HEY! STOP RIGHT THERE!</div>
-    </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!--  UI LAYER                                                 -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<div id="ui-layer">
-
-    <!-- ── 1. MAIN MENU ───────────────────────────────────────── -->
-    <div id="main-menu-screen" class="screen">
-        <div class="ss-card">
-            <div class="menu-logo">
-                <div class="menu-game-name">
-                    <span class="w1">SUBWAY</span>
-                    <span class="w2">RUNNERS</span>
-                </div>
-                <span class="menu-season">&#9889; TURBO CITY EDITION &#9889;</span>
-            </div>
-            <div class="menu-stats">
-                <div class="stat-chip">
-                    <span class="stat-icon">&#127942;</span>
-                    <div>
-                        <div class="stat-label">BEST</div>
-                        <div class="stat-val" id="menu-high-score">0</div>
-                    </div>
-                </div>
-                <div class="stat-chip gold">
-                    <span class="coin-icon">&#9733;</span>
-                    <div>
-                        <div class="stat-label">COINS</div>
-                        <div class="stat-val" id="menu-total-coins">0</div>
-                    </div>
-                </div>
-            </div>
-            <div class="menu-divider"></div>
-            <div class="btn-group">
-                <button id="btn-play" class="btn-play-main">
-                    <span class="btn-play-icon">&#9654;</span>
-                    <span>TAP TO PLAY</span>
-                </button>
-                <div class="btn-row">
-                    <button id="btn-shop" class="ss-btn pink" style="flex:1">&#128087; Characters</button>
-                    <button id="btn-spin" class="ss-btn orange" style="flex:1">&#127905; Mystery Spin</button>
-                </div>
-                <div class="btn-row">
-                    <button id="btn-settings" class="ss-btn blue" style="flex:1">&#9881; Settings</button>
-                    <button id="btn-sound-toggle" class="ss-btn blue btn-icon" title="Toggle Sound">
-                        <span id="sound-icon">&#128266;</span>
-                    </button>
-                </div>
-            </div>
-            <p class="controls-hint">
-                &#8592; &#8594; Dodge &nbsp;|&nbsp; &#8593; Jump &nbsp;|&nbsp; &#8595; Slide
-            </p>
+        <!-- Comic Action Callout Bubble -->
+        <div id="cinematic-callout" class="cinema-callout-box">
+            <div class="callout-badge" id="callout-speaker">&#128110; INSPECTOR</div>
+            <div class="callout-text" id="callout-text">HEY! STOP RIGHT THERE!</div>
         </div>
     </div>
 
-    <!-- ── 2. HUD ──────────────────────────────────────────────── -->
-    <div id="hud-screen" class="screen">
-        <div class="hud-top">
-            <div class="hud-left">
-                <div class="hud-counters-row">
-                    <div class="hud-coin-box">
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  UI LAYER                                                 -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <div id="ui-layer">
+
+        <!-- ── 1. MAIN MENU ───────────────────────────────────────── -->
+        <div id="main-menu-screen" class="screen">
+            <div class="ss-card">
+                <div class="menu-logo">
+                    <div class="menu-game-name">
+                        <span class="w1">SUBWAY</span>
+                        <span class="w2">RUNNERS</span>
+                    </div>
+                    <span class="menu-season">&#9889; TURBO CITY EDITION &#9889;</span>
+                </div>
+                <div class="menu-stats">
+                    <div class="stat-chip">
+                        <span class="stat-icon">&#127942;</span>
+                        <div>
+                            <div class="stat-label">BEST</div>
+                            <div class="stat-val" id="menu-high-score">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-chip gold">
                         <span class="coin-icon">&#9733;</span>
-                        <span id="hud-coins">0</span>
-                    </div>
-                    <div class="hud-key-box" title="Keys in Pocket">
-                        <span class="key-icon">🔑</span>
-                        <span id="hud-keys">5</span>
-                    </div>
-                </div>
-                <div id="hud-powerups">
-                    <!-- Jetpack Pill -->
-                    <div id="pill-jetpack" class="ss-powerup-pill pill-jetpack">
-                        <div class="powerup-icon-badge">🚀</div>
-                        <div class="powerup-pill-info">
-                            <div class="powerup-pill-header">
-                                <span class="powerup-name">JETPACK</span>
-                                <span id="pill-jetpack-time" class="powerup-time">50s</span>
-                            </div>
-                            <div class="powerup-bar-track">
-                                <div id="pill-jetpack-bar" class="powerup-bar-fill"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Magnet Pill -->
-                    <div id="pill-magnet" class="ss-powerup-pill pill-magnet">
-                        <div class="powerup-icon-badge">🧲</div>
-                        <div class="powerup-pill-info">
-                            <div class="powerup-pill-header">
-                                <span class="powerup-name">MAGNET</span>
-                                <span id="pill-magnet-time" class="powerup-time">22s</span>
-                            </div>
-                            <div class="powerup-bar-track">
-                                <div id="pill-magnet-bar" class="powerup-bar-fill"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Shield Pill -->
-                    <div id="pill-shield" class="ss-powerup-pill pill-shield">
-                        <div class="powerup-icon-badge">🛡️</div>
-                        <div class="powerup-pill-info">
-                            <div class="powerup-pill-header">
-                                <span class="powerup-name">SHIELD</span>
-                                <span id="pill-shield-time" class="powerup-time">12s</span>
-                            </div>
-                            <div class="powerup-bar-track">
-                                <div id="pill-shield-bar" class="powerup-bar-fill"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Multiplier Pill -->
-                    <div id="pill-multiplier" class="ss-powerup-pill pill-multiplier">
-                        <div class="powerup-icon-badge">⚡</div>
-                        <div class="powerup-pill-info">
-                            <div class="powerup-pill-header">
-                                <span class="powerup-name">2x MULT</span>
-                                <span id="pill-multiplier-time" class="powerup-time">18s</span>
-                            </div>
-                            <div class="powerup-bar-track">
-                                <div id="pill-multiplier-bar" class="powerup-bar-fill"></div>
-                            </div>
+                        <div>
+                            <div class="stat-label">COINS</div>
+                            <div class="stat-val" id="menu-total-coins">0</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="hud-right">
-                <div class="hud-score-box">
-                    <div class="hud-score-header">
-                        <div class="hud-score-label">SCORE</div>
-                        <div id="hud-mult-chip" class="hud-mult-chip">1x</div>
-                    </div>
-                    <div id="hud-score">0</div>
-                </div>
-                <button id="btn-pause" class="ss-btn blue btn-icon">&#9208;</button>
-            </div>
-        </div>
-
-        <!-- Speed Bar at Bottom -->
-        <div class="hud-bottom">
-            <div class="hud-speed-bar-wrap">
-                <div class="hud-speed-label">SPEED</div>
-                <div class="hud-speed-track">
-                    <div id="hud-speed-bar"></div>
-                </div>
-                <div id="hud-speed-val">1x</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ── 3. PAUSE ────────────────────────────────────────────── -->
-    <div id="pause-screen" class="screen">
-        <div class="modal-card">
-            <div class="modal-glow-ring blue"></div>
-            <h2 class="modal-title blue">PAUSED</h2>
-            <p class="modal-subtitle">Take a breather, runner!</p>
-            <div class="modal-divider"></div>
-            <div class="btn-group">
-                <button id="btn-resume" class="ss-btn green full-w">&#9654; RESUME</button>
-                <button id="btn-restart-pause" class="ss-btn orange full-w">&#128260; RESTART</button>
-                <button id="btn-menu-pause" class="ss-btn blue full-w">&#127968; MAIN MENU</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ── 4. GAME OVER & RESULTS SCREEN ────────────────────────── -->
-    <div id="game-over-screen" class="screen">
-        <div class="go-results-container">
-            
-            <!-- 1. Top Status Bar -->
-            <div class="go-status-bar">
-                <div class="go-stats-left">
-                    <div class="go-stat-pill pill-keys" title="Keys">
-                        <span class="pill-icon">🔑</span>
-                        <span id="go-keys-val" class="pill-val">5</span>
-                    </div>
-                    <div class="go-stat-pill pill-coins" title="Coins">
-                        <span class="pill-icon coin-icon">&#9733;</span>
-                        <span id="go-total-coins-val" class="pill-val">450</span>
-                    </div>
-                    <div class="go-stat-pill pill-boards" title="Hoverboards">
-                        <span class="pill-icon">🛹</span>
-                        <span id="go-boards-val" class="pill-val">3</span>
-                    </div>
-                </div>
-                <div class="go-stats-right">
-                    <div class="go-stat-pill pill-mult" title="Score Multiplier">
-                        <span class="pill-icon">⚡</span>
-                        <span id="go-multiplier-val" class="pill-val">x1</span>
-                    </div>
-                    <button id="btn-go-settings" class="go-icon-btn" title="Settings" type="button">
-                        ⚙️
+                <div class="menu-divider"></div>
+                <div class="btn-group">
+                    <button id="btn-play" class="btn-play-main">
+                        <span class="btn-play-icon">&#9654;</span>
+                        <span>TAP TO PLAY</span>
                     </button>
-                </div>
-            </div>
-
-            <!-- 2. Scrollable Results & Rewards Feed -->
-            <div class="go-content-scroll">
-                
-                <!-- Game Over Title & Record Tag -->
-                <div class="go-header-tag">
-                    <div class="go-caught-title">CAUGHT!</div>
-                    <div class="new-record-banner" id="new-record-tag">&#127881; NEW HIGH SCORE! &#127881;</div>
-                </div>
-
-                <!-- Final Score Card -->
-                <div class="go-card go-score-card">
-                    <div class="card-glow-edge gold"></div>
-                    <div class="card-header-row">
-                        <div class="card-label-badge"><span class="star-icon">⭐</span> FINAL SCORE</div>
-                        <div class="card-sub-best">BEST: <span id="go-high-score">0</span></div>
+                    <div class="btn-row">
+                        <button id="btn-shop" class="ss-btn pink" style="flex:1">&#128087; Characters</button>
+                        <button id="btn-spin" class="ss-btn orange" style="flex:1">&#127905; Mystery Spin</button>
                     </div>
-                    <div class="go-score-display" id="go-score">0</div>
+                    <div class="btn-row">
+                        <button id="btn-settings" class="ss-btn blue" style="flex:1">&#9881; Settings</button>
+                        <button id="btn-sound-toggle" class="ss-btn blue btn-icon" title="Toggle Sound">
+                            <span id="sound-icon">&#128266;</span>
+                        </button>
+                    </div>
+                </div>
+                <p class="controls-hint">
+                    &#8592; &#8594; Dodge &nbsp;|&nbsp; &#8593; Jump &nbsp;|&nbsp; &#8595; Slide
+                </p>
+            </div>
+        </div>
+
+        <!-- ── 2. HUD ──────────────────────────────────────────────── -->
+        <div id="hud-screen" class="screen">
+            <div class="hud-top-bar">
+                <!-- Top-Left: Modern rounded Pause button + Active Mission Progress Tracker -->
+                <div class="hud-left-group">
+                    <button id="btn-pause" class="hud-pause-btn" title="Pause Game" aria-label="Pause Game">
+                        <span class="pause-icon">⏸️</span>
+                    </button>
+
+                    <div class="hud-mission-container" id="hud-mission-container">
+                        <div class="mission-header-row">
+                            <span class="mission-star-icon">🎯</span>
+                            <span id="hud-mission-title" class="mission-title-text">COLLECT 20 COINS</span>
+                            <span id="hud-mission-count" class="mission-count-badge">0/20</span>
+                        </div>
+                        <div class="mission-progress-track">
+                            <div id="hud-mission-fill" class="mission-progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <!-- Mission Complete Celebration Banner -->
+                        <div id="hud-mission-complete" class="mission-complete-banner">
+                            <span class="checkmark-icon">✓</span>
+                            <span class="complete-text">MISSION COMPLETE!</span>
+                            <span class="complete-reward">+250 🟡</span>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Coins Collected Card with Interactive Ad Bonus -->
-                <div class="go-card go-coins-card">
-                    <div class="card-glow-edge emerald"></div>
-                    <div class="coins-card-top">
-                        <div class="coins-info-left">
-                            <span class="card-mini-title">COINS COLLECTED</span>
-                            <div class="coins-val-row">
-                                <span class="coin-icon big">&#9733;</span>
-                                <span id="go-coins" class="go-coins-display">+0</span>
+                <!-- Dynamic Pursuer Alert Banner (tripping/stumbling trigger) -->
+                <div id="pursuer-warning-banner" class="pursuer-warning-banner">
+                    <span class="warning-flasher">🚨</span>
+                    <span class="warning-text">PURSUER CLOSING IN!</span>
+                    <span class="warning-flasher">🚨</span>
+                </div>
+
+                <!-- Top-Right: High-visibility Score counter, active multiplier badge, clean Coin counter -->
+                <div class="hud-right-group">
+                    <div class="hud-stats-stack">
+                        <div class="hud-score-row">
+                            <div class="hud-score-display-box">
+                                <span class="hud-score-label">SCORE</span>
+                                <span id="hud-score" class="hud-score-num">0</span>
+                            </div>
+                            <div id="hud-mult-chip" class="hud-multiplier-badge" title="Score Multiplier">
+                                <span class="mult-star">⭐</span>
+                                <span id="hud-mult-val">x1</span>
                             </div>
                         </div>
-                        <button id="btn-ad-coins" class="ss-btn bonus-ad-btn" type="button">
-                            <span class="ad-tag">AD</span>
-                            <span class="btn-inner-text">🎬 +500 COINS</span>
-                        </button>
-                    </div>
-                </div>
 
-                <!-- Multiplier Status -->
-                <div class="go-card go-mult-card">
-                    <div class="mult-top-row">
-                        <div class="mult-label"><span class="flash-icon">⚡</span> SCORE MULTIPLIER</div>
-                        <div class="mult-target-text" id="go-mult-unlock-text">Unlocks at: <strong>x4</strong></div>
-                    </div>
-                    <div class="mult-progress-track">
-                        <div class="mult-progress-fill" id="go-mult-progress" style="width: 35%;"></div>
-                    </div>
-                    <div class="mult-subtext">Complete missions to upgrade your permanent score boost!</div>
-                </div>
-
-                <!-- Social Section: Compete with Friends -->
-                <div class="go-card go-social-card">
-                    <div class="social-card-inner">
-                        <div class="social-icon-box">👥</div>
-                        <div class="social-text-box">
-                            <div class="social-card-title">COMPETE WITH FRIENDS</div>
-                            <div class="social-card-desc">Add friends and compete for the highest score!</div>
+                        <div class="hud-currencies-row">
+                            <div class="hud-coin-badge" title="Coins Collected">
+                                <span class="gold-coin-icon">🟡</span>
+                                <span id="hud-coins" class="coin-count-num">0</span>
+                            </div>
+                            <div class="hud-key-badge" title="Keys in Pocket">
+                                <span class="key-icon">🔑</span>
+                                <span id="hud-keys" class="key-count-num">5</span>
+                            </div>
                         </div>
-                        <button id="btn-add-friends" class="ss-btn blue sm-btn" type="button">
-                            <span>➕ ADD FRIENDS</span>
-                        </button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Daily Rewards / Promotional Video Banner -->
-                <div class="go-card go-reward-banner">
-                    <div class="banner-shine-overlay"></div>
-                    <div class="banner-content-wrap">
-                        <div class="banner-badge">SPECIAL BONUS</div>
-                        <div class="banner-title">GET REWARDS</div>
-                        <div class="banner-perks">
-                            <span class="perk-pill">🔑 +2 KEYS</span>
-                            <span class="perk-pill">🛹 +1 BOARD</span>
+            <!-- Sleek Animated Glowing Pill Bars for Active Power-ups -->
+            <div id="hud-powerups" class="hud-powerups-container">
+                <!-- 1. Jetpack Pill -->
+                <div id="pill-jetpack" class="ss-powerup-pill pill-jetpack">
+                    <div class="powerup-icon-badge">🚀</div>
+                    <div class="powerup-pill-info">
+                        <div class="powerup-pill-header">
+                            <span class="powerup-name">JETPACK</span>
+                            <span id="pill-jetpack-time" class="powerup-time">15s</span>
                         </div>
-                        <button id="btn-watch-bonus-video" class="ss-btn gold-glow banner-action-btn" type="button">
-                            <span>🎬 WATCH VIDEO</span>
+                        <div class="powerup-bar-track">
+                            <div id="pill-jetpack-bar" class="powerup-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Super Sneakers Pill (New High-Jump Powerup) -->
+                <div id="pill-sneakers" class="ss-powerup-pill pill-sneakers">
+                    <div class="powerup-icon-badge">👟</div>
+                    <div class="powerup-pill-info">
+                        <div class="powerup-pill-header">
+                            <span class="powerup-name">SUPER SNEAKERS</span>
+                            <span id="pill-sneakers-time" class="powerup-time">15s</span>
+                        </div>
+                        <div class="powerup-bar-track">
+                            <div id="pill-sneakers-bar" class="powerup-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Coin Magnet Pill -->
+                <div id="pill-magnet" class="ss-powerup-pill pill-magnet">
+                    <div class="powerup-icon-badge">🧲</div>
+                    <div class="powerup-pill-info">
+                        <div class="powerup-pill-header">
+                            <span class="powerup-name">COIN MAGNET</span>
+                            <span id="pill-magnet-time" class="powerup-time">18s</span>
+                        </div>
+                        <div class="powerup-bar-track">
+                            <div id="pill-magnet-bar" class="powerup-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Energy Shield Pill -->
+                <div id="pill-shield" class="ss-powerup-pill pill-shield">
+                    <div class="powerup-icon-badge">🛡️</div>
+                    <div class="powerup-pill-info">
+                        <div class="powerup-pill-header">
+                            <span class="powerup-name">SHIELD</span>
+                            <span id="pill-shield-time" class="powerup-time">12s</span>
+                        </div>
+                        <div class="powerup-bar-track">
+                            <div id="pill-shield-bar" class="powerup-bar-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Speed Bar at Bottom -->
+            <div class="hud-bottom">
+                <div class="hud-speed-bar-wrap">
+                    <div class="hud-speed-label">SPEED</div>
+                    <div class="hud-speed-track">
+                        <div id="hud-speed-bar"></div>
+                    </div>
+                    <div id="hud-speed-val">1x</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 3. PAUSE ────────────────────────────────────────────── -->
+        <div id="pause-screen" class="screen">
+            <div class="modal-card">
+                <div class="modal-glow-ring blue"></div>
+                <h2 class="modal-title blue">PAUSED</h2>
+                <p class="modal-subtitle">Take a breather, runner!</p>
+                <div class="modal-divider"></div>
+                <div class="btn-group">
+                    <button id="btn-resume" class="ss-btn green full-w">&#9654; RESUME</button>
+                    <button id="btn-restart-pause" class="ss-btn orange full-w">&#128260; RESTART</button>
+                    <button id="btn-menu-pause" class="ss-btn blue full-w">&#127968; MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 4. GAME OVER & RESULTS SCREEN ────────────────────────── -->
+        <div id="game-over-screen" class="screen">
+            <div class="go-results-container">
+
+                <!-- 1. Top Status Bar -->
+                <div class="go-status-bar">
+                    <div class="go-stats-left">
+                        <div class="go-stat-pill pill-keys" title="Keys">
+                            <span class="pill-icon">🔑</span>
+                            <span id="go-keys-val" class="pill-val">5</span>
+                        </div>
+                        <div class="go-stat-pill pill-coins" title="Coins">
+                            <span class="pill-icon coin-icon">&#9733;</span>
+                            <span id="go-total-coins-val" class="pill-val">450</span>
+                        </div>
+                        <div class="go-stat-pill pill-boards" title="Hoverboards">
+                            <span class="pill-icon">🛹</span>
+                            <span id="go-boards-val" class="pill-val">3</span>
+                        </div>
+                    </div>
+                    <div class="go-stats-right">
+                        <div class="go-stat-pill pill-mult" title="Score Multiplier">
+                            <span class="pill-icon">⚡</span>
+                            <span id="go-multiplier-val" class="pill-val">x1</span>
+                        </div>
+                        <button id="btn-go-settings" class="go-icon-btn" title="Settings" type="button">
+                            ⚙️
                         </button>
                     </div>
-                    <div class="banner-char-graphic">🏃‍♂️</div>
                 </div>
 
-                <!-- Optional Revive Button if available -->
-                <div class="go-revive-wrap">
-                    <button id="btn-revive" class="ss-btn pink full-w" type="button">&#128273; USE KEY TO REVIVE (<span id="go-key-cost">1</span> 🔑)</button>
+                <!-- 2. Scrollable Results & Rewards Feed -->
+                <div class="go-content-scroll">
+
+                    <!-- Game Over Title & Record Tag -->
+                    <div class="go-header-tag">
+                        <div class="go-caught-title">CAUGHT!</div>
+                        <div class="new-record-banner" id="new-record-tag">&#127881; NEW HIGH SCORE! &#127881;</div>
+                    </div>
+
+                    <!-- Final Score Card -->
+                    <div class="go-card go-score-card">
+                        <div class="card-glow-edge gold"></div>
+                        <div class="card-header-row">
+                            <div class="card-label-badge"><span class="star-icon">⭐</span> FINAL SCORE</div>
+                            <div class="card-sub-best">BEST: <span id="go-high-score">0</span></div>
+                        </div>
+                        <div class="go-score-display" id="go-score">0</div>
+                    </div>
+
+                    <!-- Coins Collected Card with Interactive Ad Bonus -->
+                    <div class="go-card go-coins-card">
+                        <div class="card-glow-edge emerald"></div>
+                        <div class="coins-card-top">
+                            <div class="coins-info-left">
+                                <span class="card-mini-title">COINS COLLECTED</span>
+                                <div class="coins-val-row">
+                                    <span class="coin-icon big">&#9733;</span>
+                                    <span id="go-coins" class="go-coins-display">+0</span>
+                                </div>
+                            </div>
+                            <button id="btn-ad-coins" class="ss-btn bonus-ad-btn" type="button">
+                                <span class="ad-tag">AD</span>
+                                <span class="btn-inner-text">🎬 +500 COINS</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Multiplier Status -->
+                    <div class="go-card go-mult-card">
+                        <div class="mult-top-row">
+                            <div class="mult-label"><span class="flash-icon">⚡</span> SCORE MULTIPLIER</div>
+                            <div class="mult-target-text" id="go-mult-unlock-text">Unlocks at: <strong>x4</strong></div>
+                        </div>
+                        <div class="mult-progress-track">
+                            <div class="mult-progress-fill" id="go-mult-progress" style="width: 35%;"></div>
+                        </div>
+                        <div class="mult-subtext">Complete missions to upgrade your permanent score boost!</div>
+                    </div>
+
+                    <!-- Social Section: Compete with Friends -->
+                    <div class="go-card go-social-card">
+                        <div class="social-card-inner">
+                            <div class="social-icon-box">👥</div>
+                            <div class="social-text-box">
+                                <div class="social-card-title">COMPETE WITH FRIENDS</div>
+                                <div class="social-card-desc">Add friends and compete for the highest score!</div>
+                            </div>
+                            <button id="btn-add-friends" class="ss-btn blue sm-btn" type="button">
+                                <span>➕ ADD FRIENDS</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Daily Rewards / Promotional Video Banner -->
+                    <div class="go-card go-reward-banner">
+                        <div class="banner-shine-overlay"></div>
+                        <div class="banner-content-wrap">
+                            <div class="banner-badge">SPECIAL BONUS</div>
+                            <div class="banner-title">GET REWARDS</div>
+                            <div class="banner-perks">
+                                <span class="perk-pill">🔑 +2 KEYS</span>
+                                <span class="perk-pill">🛹 +1 BOARD</span>
+                            </div>
+                            <button id="btn-watch-bonus-video" class="ss-btn gold-glow banner-action-btn" type="button">
+                                <span>🎬 WATCH VIDEO</span>
+                            </button>
+                        </div>
+                        <div class="banner-char-graphic">🏃‍♂️</div>
+                    </div>
+
+                    <!-- Optional Revive Button if available -->
+                    <div class="go-revive-wrap">
+                        <button id="btn-revive" class="ss-btn pink full-w" type="button">&#128273; USE KEY TO REVIVE
+                            (<span id="go-key-cost">1</span> 🔑)</button>
+                    </div>
+
+                </div><!-- end .go-content-scroll -->
+
+                <!-- 3. Fixed Bottom Action Bar -->
+                <div class="go-bottom-bar">
+                    <button id="btn-go-home" class="go-nav-btn" type="button" title="Main Menu">
+                        <span class="nav-icon">🏠</span>
+                        <span class="nav-label">HOME</span>
+                    </button>
+
+                    <!-- Prominent Green "PLAY" button to restart instantly -->
+                    <button id="btn-go-play" class="go-play-btn" type="button" title="Play Again">
+                        <span class="play-pulse-ring"></span>
+                        <span class="play-icon">▶</span>
+                        <span class="play-text">PLAY</span>
+                    </button>
+
+                    <button id="btn-go-shop" class="go-nav-btn" type="button" title="Characters & Upgrades">
+                        <span class="nav-icon">⚡</span>
+                        <span class="nav-label">UPGRADES</span>
+                    </button>
+
+                    <!-- Hidden button alias to ensure backwards compatibility -->
+                    <button id="btn-restart" style="display:none;" type="button"></button>
+                    <button id="btn-menu-gameover" style="display:none;" type="button"></button>
                 </div>
 
-            </div><!-- end .go-content-scroll -->
+                <!-- Floating Feedback Toast Notification -->
+                <div id="go-toast" class="go-toast">🏆 Link Copied! Share with friends!</div>
 
-            <!-- 3. Fixed Bottom Action Bar -->
-            <div class="go-bottom-bar">
-                <button id="btn-go-home" class="go-nav-btn" type="button" title="Main Menu">
-                    <span class="nav-icon">🏠</span>
-                    <span class="nav-label">HOME</span>
-                </button>
-
-                <!-- Prominent Green "PLAY" button to restart instantly -->
-                <button id="btn-go-play" class="go-play-btn" type="button" title="Play Again">
-                    <span class="play-pulse-ring"></span>
-                    <span class="play-icon">▶</span>
-                    <span class="play-text">PLAY</span>
-                </button>
-
-                <button id="btn-go-shop" class="go-nav-btn" type="button" title="Characters & Upgrades">
-                    <span class="nav-icon">⚡</span>
-                    <span class="nav-label">UPGRADES</span>
-                </button>
-                
-                <!-- Hidden button alias to ensure backwards compatibility -->
-                <button id="btn-restart" style="display:none;" type="button"></button>
-                <button id="btn-menu-gameover" style="display:none;" type="button"></button>
-            </div>
-
-            <!-- Floating Feedback Toast Notification -->
-            <div id="go-toast" class="go-toast">🏆 Link Copied! Share with friends!</div>
-
-        </div><!-- end .go-results-container -->
-    </div>
-
-    <!-- ── 5. SHOP ─────────────────────────────────────────────── -->
-    <div id="shop-screen" class="screen">
-        <div class="modal-card">
-            <div class="modal-glow-ring orange"></div>
-            <h2 class="modal-title orange">CHARACTERS</h2>
-            <div class="hud-coin-box" style="display:inline-flex;margin-bottom:14px;">
-                <span class="coin-icon">&#9733;</span>
-                <span id="shop-coins">0</span>
-            </div>
-            <div id="skin-list" class="skin-grid"></div>
-            <button id="btn-close-shop" class="ss-btn blue full-w">&#11013; BACK</button>
+            </div><!-- end .go-results-container -->
         </div>
-    </div>
 
-    <!-- ── 6. SPIN WHEEL ───────────────────────────────────────── -->
-    <div id="spin-screen" class="screen">
-        <div class="modal-card">
-            <div class="modal-glow-ring yellow"></div>
-            <h2 class="modal-title yellow">MYSTERY WHEEL</h2>
-            <div class="spin-wrapper">
-                <div class="spin-pointer"></div>
-                <canvas id="spin-wheel-canvas" width="240" height="240"></canvas>
-            </div>
-            <div class="spin-reward-text" id="spin-reward-msg"></div>
-            <div class="btn-group">
-                <button id="btn-spin-wheel" class="ss-btn orange full-w">&#127920; SPIN FOR PRIZES</button>
-                <button id="btn-close-spin" class="ss-btn blue full-w">&#11013; BACK</button>
+        <!-- ── 5. SHOP ─────────────────────────────────────────────── -->
+        <div id="shop-screen" class="screen">
+            <div class="modal-card">
+                <div class="modal-glow-ring orange"></div>
+                <h2 class="modal-title orange">CHARACTERS</h2>
+                <div class="hud-coin-box" style="display:inline-flex;margin-bottom:14px;">
+                    <span class="coin-icon">&#9733;</span>
+                    <span id="shop-coins">0</span>
+                </div>
+                <div id="skin-list" class="skin-grid"></div>
+                <button id="btn-close-shop" class="ss-btn blue full-w">&#11013; BACK</button>
             </div>
         </div>
-    </div>
 
-    <!-- ── 7. SETTINGS ─────────────────────────────────────────── -->
-    <div id="settings-screen" class="screen">
-        <div class="modal-card">
-            <div class="modal-glow-ring blue"></div>
-            <h2 class="modal-title blue">SETTINGS</h2>
-            <div class="modal-divider"></div>
-            <div class="settings-list">
-                <div class="setting-row">
-                    <span>&#128266; Music &amp; SFX</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="setting-sound" checked>
-                        <span class="toggle-slider"></span>
-                    </label>
+        <!-- ── 6. SPIN WHEEL ───────────────────────────────────────── -->
+        <div id="spin-screen" class="screen">
+            <div class="modal-card">
+                <div class="modal-glow-ring yellow"></div>
+                <h2 class="modal-title yellow">MYSTERY WHEEL</h2>
+                <div class="spin-wrapper">
+                    <div class="spin-pointer"></div>
+                    <canvas id="spin-wheel-canvas" width="240" height="240"></canvas>
                 </div>
-                <div class="setting-row">
-                    <span>&#9889; Turbo Theme</span>
-                    <span class="setting-val green">ACTIVE</span>
-                </div>
-                <div class="setting-row">
-                    <span>&#128640; Target FPS</span>
-                    <span class="setting-val">60 FPS</span>
-                </div>
-                <div class="setting-row">
-                    <span>&#127775; Visual Quality</span>
-                    <span class="setting-val">ULTRA</span>
+                <div class="spin-reward-text" id="spin-reward-msg"></div>
+                <div class="btn-group">
+                    <button id="btn-spin-wheel" class="ss-btn orange full-w">&#127920; SPIN FOR PRIZES</button>
+                    <button id="btn-close-spin" class="ss-btn blue full-w">&#11013; BACK</button>
                 </div>
             </div>
-            <button id="btn-close-settings" class="ss-btn blue full-w" style="margin-top:12px;">&#11013; BACK</button>
         </div>
-    </div>
 
-</div><!-- end #ui-layer -->
+        <!-- ── 7. SETTINGS ─────────────────────────────────────────── -->
+        <div id="settings-screen" class="screen">
+            <div class="modal-card">
+                <div class="modal-glow-ring blue"></div>
+                <h2 class="modal-title blue">SETTINGS</h2>
+                <div class="modal-divider"></div>
+                <div class="settings-list">
+                    <div class="setting-row">
+                        <span>&#128266; Music &amp; SFX</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="setting-sound" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-row">
+                        <span>&#9889; Turbo Theme</span>
+                        <span class="setting-val green">ACTIVE</span>
+                    </div>
+                    <div class="setting-row">
+                        <span>&#128640; Target FPS</span>
+                        <span class="setting-val">60 FPS</span>
+                    </div>
+                    <div class="setting-row">
+                        <span>&#127775; Visual Quality</span>
+                        <span class="setting-val">ULTRA</span>
+                    </div>
+                </div>
+                <button id="btn-close-settings" class="ss-btn blue full-w" style="margin-top:12px;">&#11013;
+                    BACK</button>
+            </div>
+        </div>
 
-<!-- Main Game Engine -->
-<script src="game.js"></script>
+    </div><!-- end #ui-layer -->
+
+    <!-- Main Game Engine -->
+    <script src="game.js"></script>
 </body>
+
 </html>
